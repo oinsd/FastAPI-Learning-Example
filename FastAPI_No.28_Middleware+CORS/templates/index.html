@@ -1,0 +1,25 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+    <input type="button" value="Ajax" onclick="DoAjax();" />
+    <script src="../static/jquery.min.js"></script>
+    <script>
+        function DoAjax(){
+            $.ajax({
+                url:'http://127.0.0.1:8888',
+                // type:'GET',
+                type:'POST',
+                data:{'q':'q'},
+                success:function(arg){ console.log(arg); },
+            });
+        };
+    </script>
+</body>
+</html>
+

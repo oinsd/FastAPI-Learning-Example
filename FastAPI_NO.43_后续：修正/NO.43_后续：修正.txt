@@ -1,0 +1,16 @@
+后续修复：
+	1、后端修改:
+		uvicorn.run(app,host='0.0.0.0',port=8888)  
+	2、前端.env文件修改：
+		VUE_APP_NAME=FastAPI
+		VUE_APP_DOMAIN_DEV=192.168.1.101:8888
+		（这里的192.168.1.101是本机局域网IP地址，FastAPI是希望显示的title）
+	3、nginx的nginx.conf修改：
+		listen       80;
+		server_name  192.168.1.101;
+	4、前端使用nodejs进行npm run build（或cnpm run build）打包。
+	5、删掉原来nginx里面的dist文件夹，并且拷贝刚打包的dist文件夹。
+	6、重启nginx和后端FastAPI
+达到效果：
+	1、页面标题正常显示标题
+	2、局域网内其它电脑或手机可以正常访问和登录

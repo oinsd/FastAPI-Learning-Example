@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <!-- 如果上述地址失效，实验不成功，则需要更换CDN源或者手动下载文件并引用 -->
+</head>
+<body>
+    <div id="app" class="div">
+        <h1>Vue + FastAPI 演示前后端分离</h1>
+        <br>
+        请输入后端IP：
+        <input type="text" v-model.lazy='ipp'>
+        <br>
+        请输入发送内容：
+        <input type="text" v-model.lazy='dataa'>
+        <br><br>
+        <button @click='ajaxx'>点我发送ajax</button>
+        <br>
+        接收到后端数据：{{ getdata }}
+    </div>
+
+    <script>
+        var vm = new Vue
+        (
+            {
+                el: '#app', 
+                data:
+                {
+                    getdata:'',
+                    ipp:'http://192.168.101.55:8888/',
+                    dataa:''
+                },
+                methods: 
+                {
+                    ajaxx()
+                    {
+                        axios.get(this.ipp + this.dataa).then
+                        (
+                            res=>
+                            {
+                                console.log(res.data);
+                                this.getdata = res.data;
+                                // 注意.data才是数据
+                            }
+                        )
+                    },
+                },
+            }
+        );
+    </script>
+    
+    <style>
+        body{ text-align:center;}
+    </style>
+</body>
+</html>
